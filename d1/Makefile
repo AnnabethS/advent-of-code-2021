@@ -1,0 +1,2 @@
+out:
+	gcc two.c
