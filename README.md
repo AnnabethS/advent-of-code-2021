@@ -1,2 +1,29 @@
 # Anna's Advent of Code 2021
+
 maybe this year i will actually complete it
+
+## Daily Log
+
+### Day 1
+
+- Fairly easy puzzle today, a nice intro
+
+### Day 2
+
+- Slightly more challenging today
+- Had some memory management troubles today
+
+### Day 3
+
+- Screwed up some memory management again today, not the easiest fix
+
+### Day 4
+
+- I had massive memory management issues again today, lots of strange
+behaviours, in the end the final bug was missing a blindingly obvious logical
+oversight
+
+### Day 5
+
+- No memory management issues today :)
+- A fairly nice puzzle, made some structs for an easier time, helped a lot
