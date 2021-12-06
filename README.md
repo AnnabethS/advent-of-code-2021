@@ -27,3 +27,9 @@ oversight
 
 - No memory management issues today :)
 - A fairly nice puzzle, made some structs for an easier time, helped a lot
+
+### Day 6
+
+- Used a nice linked list implementation for part 1,
+- linked list iteration did not scale well to part 2, so i implemented a
+smarter strategy for part 2
