@@ -33,3 +33,8 @@ oversight
 - Used a nice linked list implementation for part 1,
 - linked list iteration did not scale well to part 2, so i implemented a
 smarter strategy for part 2
+
+### Day 7
+
+- Got a little stuck with the 2nd part today, but was right about mean
+being correct, turns out to +/- 0.5, so i needed to check and input both
