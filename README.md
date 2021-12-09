@@ -45,3 +45,9 @@ being correct, turns out to +/- 0.5, so i needed to check and input both
 - part 2 took me ages, working out the logic and then i had quite a few bugs
 suprisingly though, none were memory management related
 - this is the first day that im not finishing on the day of its release
+
+### Day 9
+
+- not too bad today, part 1 was very easy
+- i spent ages overengineering a solution for part 2 that ended up not working.
+- another linked list implementation
