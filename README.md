@@ -38,3 +38,10 @@ smarter strategy for part 2
 
 - Got a little stuck with the 2nd part today, but was right about mean
 being correct, turns out to +/- 0.5, so i needed to check and input both
+
+### Day 8
+
+- part 1 was very easy
+- part 2 took me ages, working out the logic and then i had quite a few bugs
+suprisingly though, none were memory management related
+- this is the first day that im not finishing on the day of its release
