@@ -51,3 +51,10 @@ suprisingly though, none were memory management related
 - not too bad today, part 1 was very easy
 - i spent ages overengineering a solution for part 2 that ended up not working.
 - another linked list implementation
+
+### Day 10
+
+- fairly easy today, wrote a nice stack based implementation that worked for
+both parts, with only minor tweaks for part 2
+- spent a while on part 2 fixing an overflow, due to the values overflowing
+an int
