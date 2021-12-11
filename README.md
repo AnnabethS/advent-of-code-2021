@@ -58,3 +58,9 @@ suprisingly though, none were memory management related
 both parts, with only minor tweaks for part 2
 - spent a while on part 2 fixing an overflow, due to the values overflowing
 an int
+
+### Day 11
+
+- easiest day for a while, the diff between part 1 and 2 is like a few lines
+almost overengineered a solution with a queue of flashed octopi but the puzzle
+input is only 10*10 so its really unessecary.
