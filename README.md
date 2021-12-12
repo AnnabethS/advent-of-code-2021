@@ -64,3 +64,11 @@ an int
 - easiest day for a while, the diff between part 1 and 2 is like a few lines
 almost overengineered a solution with a queue of flashed octopi but the puzzle
 input is only 10*10 so its really unessecary.
+
+### Day 12
+- medium difficulty today, took a while to get going
+- used a linked list for the working and finished paths, and then inside them a fixed
+length string which i just made large enough to always hold the maximum path length
+- had issues with time to completion on the second one, forgot i put the while loop in
+that traverses the entire linked list for debugging purposes. i had removed the printf
+but left the loop in, and after that it completed in about 2s
