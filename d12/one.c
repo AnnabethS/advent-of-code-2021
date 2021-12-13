@@ -16,7 +16,7 @@ typedef struct connection{
 }connection;
 
 typedef struct node{
-	char path[(LINES*3)+1];
+        char path[(LINES*3)+1];
 	char pathHead[3];
 	struct node* next;
 }node;
