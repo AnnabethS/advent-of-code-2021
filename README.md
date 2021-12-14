@@ -82,3 +82,13 @@ but left the loop in, and after that it completed in about 2s
 solution
 - due to the way i solved it, the hardest part of part 2 was reading the letters
 from the output to my terminal
+
+### Day 14
+
+- Another challenge of scaling today, first solution was quite easy, made a doubling
+dynamic length string where when it reaches the end it reallocs 2x the memory for that
+- This solution would not have worked for part 2 due to the time and space complexity
+so instead i used a system in which i keep track of all current pairs and how many times
+each letter has occured.
+- we keep track of occuring letters seperately since its easier than figuring it out
+by looking at the head of each pair or something like that.
