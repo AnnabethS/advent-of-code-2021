@@ -92,3 +92,11 @@ so instead i used a system in which i keep track of all current pairs and how ma
 each letter has occured.
 - we keep track of occuring letters seperately since its easier than figuring it out
 by looking at the head of each pair or something like that.
+
+### Day 15
+
+- no
+
+### Day 16
+
+- Enjoyable puzzle today, had some silent overflowing issues though :/
