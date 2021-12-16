@@ -92,7 +92,7 @@ int main()
             minOccurances = occurances[i];
     }
     printf("max %lld min %lld\n", maxOccurances, minOccurances);
-
+    
     long long output = maxOccurances - minOccurances;
     printf("output: %lld\n", output);
 }

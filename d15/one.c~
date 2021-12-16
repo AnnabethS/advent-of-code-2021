@@ -1,0 +1,186 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#ifdef TEST
+#define FILENAME "test.txt"
+#define DIMX 10
+#define DIMY 10
+#else
+#define FILENAME "input.txt"
+#define DIMX 1
+#define DIMY 1
+#endif
+
+typedef struct node{
+    int x;
+    int y;
+    int g;
+    int h;
+    int f;
+    // previous node IN THE PATH
+    struct node *prev;
+    // next node IN THE LINKED LIST
+    struct node *next;
+}node;
+
+char addToQueue(node *n, node **head);
+void getCosts(node *n, int cost[DIMY][DIMX]);
+void printNode(node *n);
+void getSuccessors(node *n, node *outNodes[4], int cost[DIMY][DIMX]);
+node* popFromQueue(node **head);
+int getNodeFFromQueue(node* n, node *head);
+
+int main()
+{
+    FILE* fp = fopen(FILENAME, "r");
+    int cost[DIMY][DIMX];
+
+    for(int y=0; y < DIMY; y++)
+    {
+        for(int x=0; x < DIMX; x++)
+        {
+            char bufChar;
+            fscanf(fp, "%c", &bufChar);
+            cost[y][x] = bufChar - '0';
+        }
+        char buf2;
+        fscanf(fp, "%c", &buf2);
+    }
+
+    fclose(fp);
+
+    // both queues are priority queues sorted by node.f with low f being higher priority
+    
+    // item 1 of the open queue
+    node* openQHead = (node*) malloc(sizeof(node));
+    /* openQHead->x = openQHead->y = openQHead->f = openQHead->g =  */
+    /* openQHead->prev = NULL; // opening node */
+    /* openQHead->next = NULL; */
+
+    memset(openQHead, 0, sizeof(node));
+
+    printNode(openQHead);
+
+    // item 1 of the closed queue
+    node* closedListHead = (node*) malloc(sizeof(node));
+
+
+    while(openQHead !=NULL)
+    {
+        node *succ[4] = {NULL};
+        node *currNode = popFromQueue(&openQHead);
+        getSuccessors(currNode, succ, cost);
+        for (int i=0; i < 4; i++)
+        {
+            if(succ[i]->x == DIMX-1 && succ[i]->y == DIMY-1)
+            {
+                // this successor is the goal, we can stop now
+                addToQueue(succ[i], &closedListHead);
+            }
+            int closedValue = getNodeFFromQueue(succ[i], closedListHead);
+            if(closedValue != -1 && closedValue <= succ[i]->f)
+            {
+                free(succ[i]);
+                continue;
+            }
+            addToQueue(succ[i], &openQHead);
+        }
+    }
+}
+
+//returns 0 if the node was not added, 1 otherwise
+char addToQueue(node *n, node **head)
+{
+    //catch the case where n.f < head.f
+    if(n->f < (*head)->f)
+    {
+        node* oldHead = *head;
+        *head = n;
+        n->next = oldHead;
+        return 1;
+    }
+    
+    node *ptr = *head;
+    node *tail;
+    while(ptr != NULL)
+    {
+        if(ptr->x == n->x && ptr->y == n->y)
+        { //this node is already in the list, with a lower path cost
+            return 0;
+        }
+        if(ptr->f > n->f)
+        {
+            node* oldnext = ptr->next;
+            ptr->next = n;
+            n->next = oldnext;
+            return 1;
+        }
+        if(ptr->next == NULL)
+            tail = ptr->next;
+        ptr = ptr->next;
+    }
+    tail->next = n;
+    return 1;
+}
+
+node* popFromQueue(node **head)
+{
+    node *oldHead = *head;
+    *head = (*head)->next;
+    return oldHead;
+}
+
+int getNodeFFromQueue(node* n, node *head)
+{
+    node *ptr = head;
+    while(ptr != NULL)
+    {
+        if(ptr->x == n->x && ptr->y == n->y)
+            return ptr->f;
+        ptr = ptr->next;
+    }
+    return -1;
+}
+
+void getCosts(node *n, int cost[DIMY][DIMX])
+{
+    if(n->prev != NULL)
+        n->g = cost[n->y][n->x] + n->prev->g;
+    else
+        n->g = 0;
+    n->h = (DIMX - 1 - n->x) + (DIMY - 1 - n->y);
+    n->f = n->g + n->h;
+}
+
+void getSuccessors(node *n, node *outNodes[4], int cost[DIMY][DIMX])
+{
+    // intended shape
+    //  0
+    //3 N 1
+    //  2 
+    int dirs[4][2] = {{0,-1},{1,0},{0,1},{-1,0}};
+    for(int i=0; i < 4; i++)
+    {
+        int x = n->x + dirs[i][0];
+        int y = n->y + dirs[i][1];
+        if(x >= 0 && x < DIMX && y >= 0 && y < DIMY)
+        {
+            outNodes[i] = (node*) malloc(sizeof(node));
+            outNodes[i]->x = x;
+            outNodes[i]->y = y;
+            getCosts(outNodes[i], cost);
+            outNodes[i]->prev = n;
+            outNodes[i]->next = NULL;
+        }
+        else
+        {
+            outNodes[i] = NULL;
+        }
+    }
+}
+
+void printNode(node *n)
+{
+    printf("x: %d, y: %d, g: %d, h: %d, f: %d\n", n->x, n->y, n->g, n->h, n->f);
+}
