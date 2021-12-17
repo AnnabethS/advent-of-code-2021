@@ -1,0 +1,5 @@
+* part 1
+increase x in the outer loop, one by one
+test y values increasingly from 0, if it doesnt reach the near x value, continue, if it does then record the high y value. if it goes past the x value, then stop searching higher y values.
+if the first test of a y value is past the far x value, then no more y values will be found on this solution
+* part 2

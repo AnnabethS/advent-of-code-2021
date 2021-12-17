@@ -100,3 +100,12 @@ by looking at the head of each pair or something like that.
 ### Day 16
 
 - Enjoyable puzzle today, had some silent overflowing issues though :/
+
+### Day 17
+
+- Fairly easy day today, one i stopped overengineering and looking for a smart
+solution that would allow me to automatically stop searching when i know an x 
+value wont have any more working y values, to just search all of them since its
+actually not that many (i overscoped and did x: -1000 -> 1000 and y: 0 -> 1000)
+
+- For part 2, i just removed some lines and added a counter.
