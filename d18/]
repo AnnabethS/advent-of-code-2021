@@ -1,0 +1,272 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+#ifdef TEST
+#define FILENAME "test.txt"
+#else
+#define FILENAME "input.txt"
+#endif
+
+typedef struct pair{
+    struct pair *upPair;
+    struct pair *leftPair;
+    struct pair *rightPair;
+    int leftNum;
+    int rightNum;
+}pair;
+
+//pair operations
+void addPair(pair **dest, pair *leftPair, pair *rightPair);
+void initPair(pair *p);
+void splitPair(pair *p, char side);
+void explodePair(pair *p);
+
+//input
+void parseInputString(pair **topPair, char **str);
+
+//debug
+void printPair(pair *top);
+
+int main() {
+    pair *top;
+    char *testStr = calloc(62, sizeof(char));
+    char *ptr = testStr;
+    strcpy(testStr, "[7,[6,[5,[4,[3,2]]]]]");
+    parseInputString(&top, &ptr);
+
+/*     float original = 11; */
+/*     printf("\n%f %d %d", (original/2), (int)floor(original/2), (int)ceil(original/2)); */
+
+    printf("\n");
+    printPair(top);
+    printf("\n");
+
+    printPair(top->rightPair->rightPair->rightPair->rightPair);
+    printf("\n");
+
+    explodePair(top->rightPair->rightPair->rightPair->rightPair);
+    printf("\n");
+
+
+    printPair(top);
+
+}
+
+void addPair(pair **dest, pair *leftPair, pair *rightPair)
+{
+    *dest = malloc(sizeof(pair));
+    initPair(*dest);
+    (*dest)->leftPair = leftPair;
+    leftPair->upPair = *dest;
+    (*dest)->rightPair = rightPair;
+    rightPair->upPair = *dest;
+}
+
+void splitPair(pair *p, char side)
+{
+    int *num;
+    pair *newLoc;
+    if(side == 'L')
+    {
+        num = &(p->leftNum);
+        newLoc = malloc(sizeof(pair));
+        p->leftPair = newLoc;
+    }
+    else if (side == 'R')
+    {
+        num = &(p->rightNum);
+        newLoc = malloc(sizeof(pair));
+        p->rightPair = newLoc;
+    }
+    else
+    {
+        printf("ERROR: invalid input to splitPair: side = %c,"
+               " must be 'L' or 'R'\n", side);
+        return;
+    }
+
+    if(*num == -1)
+    {
+        printf("tried to split a non-literal number, side = %c, pair:\n", side);
+        printPair(p);
+    }
+
+    if(*num <= 9)
+    {
+        printf("tried to split a number which doesnt need splitting,"
+               "side = %c, pair:\n", side);
+        printPair(p);
+    }
+
+    float left = floor((float)*num / 2);
+    float right = ceil((float)*num / 2);
+
+    newLoc->leftNum = (int)left;
+    newLoc->rightNum = (int)right;
+
+    *num = -1;
+}
+
+void explodePair(pair *p)
+{
+    pair *parent_ptr = p->upPair;
+    pair *ptr = p;
+
+    /* if(parent_ptr == NULL)
+         return; */
+    if(parent_ptr->rightPair == ptr)
+    {
+        // the parent pair has the current pair on the right, therefore there is
+        // a left symbol we can add to, somewhere down the left tree
+        pair *rightmost = parent_ptr->leftPair;
+        while(rightmost->rightPair != NULL)
+        {
+            rightmost = rightmost->rightPair;
+        }
+        // we have found the pair with the rightmost literal
+        rightmost->rightNum += p->leftNum;
+    }
+    else if(parent_ptr->leftPair == ptr)
+    { //seems to be working
+        pair *rightmost = parent_ptr->upPair;
+        while(rightmost != NULL && rightmost->rightPair == NULL)
+        {
+            rightmost = rightmost->upPair;
+        }
+        if(rightmost != NULL)
+        {
+            rightmost->rightNum += p->leftNum;
+        }
+    }
+
+    printf("done left num check\n");
+
+    if(parent_ptr->leftPair == ptr)
+    {
+        // the parent pair has the current pair on the left, therefore there is
+        // a right symbol we can add to, somewhere down the right tree
+        pair *leftmost = parent_ptr;
+        if(leftmost->rightNum != -1)
+        {
+            leftmost->rightNum += p->rightNum;
+        }
+        else
+        { // its a pair directly right of the p pair
+            leftmost = leftmost->rightPair;
+            while(leftmost->leftNum != -1)
+            {
+                leftmost = leftmost->leftPair;
+            }
+            leftmost->leftNum += p->rightNum;
+        }
+    }
+    else if(parent_ptr->rightPair == ptr)
+    { // the pair is on the right, we care about the right number
+        printf("here\n");
+        pair *leftmost = parent_ptr;
+        while(leftmost->upPair != NULL)
+        {
+            if(leftmost->upPair->leftPair == leftmost)
+            {// there is now a number / pair on the right.
+                leftmost = leftmost->upPair;
+                while(leftmost->leftNum != -1)
+                {
+                    leftmost = leftmost->leftPair;
+                }
+                leftmost->leftNum += p->rightNum;
+                break;
+            }
+        }
+    }
+
+    // we have added where we needed to, sort out parent pair
+    if(parent_ptr->leftPair == ptr)
+    {
+        parent_ptr->leftNum = 0;
+        free(parent_ptr->leftPair);
+        parent_ptr->leftPair = NULL;
+    }
+    else if(parent_ptr->rightPair == ptr)
+    {
+        parent_ptr->rightNum = 0;
+        free(parent_ptr->rightPair);
+        parent_ptr->rightPair = NULL;
+    }
+}
+
+// str should point to the opening [ of a pair that needs parsing
+void parseInputString(pair **topPair, char **str)
+{
+    if(**str != '[')
+    {
+        printf("illegal string parse!");
+        return;
+    }
+    *topPair = malloc(sizeof(pair));
+    initPair(*topPair);
+    (*str)++;
+    if(**str == '[')
+    { // its another nested pair
+        parseInputString(&((*topPair)->leftPair), str);
+        (*topPair)->leftPair->upPair = *topPair;
+        (*str)++;
+    }
+    else if (**str >= '0' && **str <= '9')
+    { // literal number
+        (*topPair)->leftNum = **str - '0';
+    }
+    else
+    { // illegal input.
+        printf("illegal input during left parse. (%c) detected\n", **str);
+        return;
+    }
+
+    (*str)++;
+    (*str)++;
+
+    if(**str == '[')
+    { // its another nested pair
+        parseInputString(&((*topPair)->rightPair), str);
+        (*topPair)->rightPair->upPair = *topPair;
+        (*str)++;
+    }
+    else if (**str >= '0' && **str <= '9')
+    { // literal number
+        (*topPair)->rightNum = **str - '0';
+    }
+    else
+    { // illegal input.
+        printf("illegal input during right parse. (%c) detected\n", **str);
+        return;
+    }
+}
+
+void initPair(pair *p)
+{
+    p->upPair = NULL;
+    p->leftPair = NULL;
+    p->rightPair = NULL;
+    p->leftNum = -1;
+    p->rightNum = -1;
+}
+
+void printPair(pair *top)
+{
+    printf("[");
+
+    if(top->leftNum == -1)
+        printPair(top->leftPair);
+    else
+        printf("%d", top->leftNum);
+
+    printf(",");
+
+    if(top->rightNum == -1)
+        printPair(top->rightPair);
+    else
+        printf("%d", top->rightNum);
+
+    printf("]");
+}

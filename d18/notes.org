@@ -1,0 +1,32 @@
+* Memory Management
+we will have a pair struct that has 5 values,
+- leftPair
+- rightPair
+- leftNum
+- rightNum
+- upPair (NULL if there is no pair above this one)
+this can represent either a connection down to another pair or a literal number,
+the Pairs should be null if its a literal number, and the numbers should be -1 if
+its a pair
+
+* Reduction
+*** Explosion
+bubble up and add the leftmost number of the pair to the next number on the left
+(we can check if the leftNum == -1) (until upPair == NULL)
+do the same for the rightmost number, but on the right
+
+*** Splitting
+make a literal number (x) into a pair (p)
+- p->leftNum = (x / 2) (round down)
+- p->rightNum = (x / 2) (round up)
+
+
+* Manual Example Checking
+
+[[[[4,0],[5,4]],[[2,7],[6,0]]],[[[6,7],[7,7]],[[4,11],[0,6]]]]
+
+
+[[[[4,0],[5,4]],[[2,0],[15,5]]],[17,[[4,0],[[6,3],[11,8]]]]]
+outputs to
+[[[[4,0],[5,4]],[[2,0],[15,5]]],[20,[[4,6],[0,[11,8]]]]]
+(6,3 explodes and 11 does not increase)

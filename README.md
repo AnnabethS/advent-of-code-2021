@@ -109,3 +109,8 @@ value wont have any more working y values, to just search all of them since its
 actually not that many (i overscoped and did x: -1000 -> 1000 and y: 0 -> 1000)
 
 - For part 2, i just removed some lines and added a counter.
+
+### Day 18
+
+- Stopped after quite a few hours, no longer found it fun.
+- Did not complete part 1
