@@ -114,3 +114,15 @@ actually not that many (i overscoped and did x: -1000 -> 1000 and y: 0 -> 1000)
 
 - Stopped after quite a few hours, no longer found it fun.
 - Did not complete part 1
+
+### Day 19
+
+- The End. I did not attempt this day due to travelling home, and i have decided
+that i no longer wish to participate in AoC 2021 due to other commitments in my life
+becoming more important, and requiring my time.
+
+## Closing Thoughts
+
+- Doing it in C was a fun challenge, and i got a lot better at C during this year,
+- Was definitely a worthwhile experience, and exposed some flaws in my knowledge
+(i am looking at you, min heaps from day 15).
