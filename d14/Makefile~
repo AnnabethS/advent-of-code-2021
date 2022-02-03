@@ -1,4 +1,0 @@
-a.out: one.o
-	clang one.o -o a.out
-one.o : one.c
-	clang -c one.c -o one.o
