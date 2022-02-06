@@ -17,9 +17,6 @@ int main()
 		int l = strtol(strtok(bufStr, "x"), NULL, 10);
 		int w = strtol(strtok(NULL, "x"), NULL, 10);
 		int h = strtol(strtok(NULL, "x"), NULL, 10);
-		/* int l = 2; */
-		/* int w = 3; */
-		/* int h = 4; */
 		int p1 = 2*l + 2*w;
 		int p2 = 2*l + 2*h;
 		int p3 = 2*w + 2*h;
