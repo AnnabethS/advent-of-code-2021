@@ -8,6 +8,29 @@ I started doing AoC in 2021, with AoC 2021, and in 2022 i begin trying all of th
 The language i will be using is C, mainly because its an interesting challenge and I like working with it
 
 ** 2015
+*** Puzzle 1
+
+- Nice easy intro as expected
+
+*** Puzzle 2
+
+- Fairly easy puzzle
+
+*** Puzzle 3
+
+- Nice easy puzzle again, my solution could probably be made faster
+  with some sort of hash map rather than a linked list, although it
+  may not be worth it, since its very fast anyway
+
+
+*** Puzzle 4
+
+- MD5 hashing in C causes me great pain
+
+*** Puzzle 5
+
+-
+
 ** 2016
 ** 2017
 ** 2018
@@ -114,7 +137,7 @@ by looking at the head of each pair or something like that.
 *** Puzzle 17
 
 - Fairly easy day today, one i stopped overengineering and looking for a smart
-solution that would allow me to automatically stop searching when i know an x 
+solution that would allow me to automatically stop searching when i know an x
 value wont have any more working y values, to just search all of them since its
 actually not that many (i overscoped and did x: -1000 -> 1000 and y: 0 -> 1000)
 
