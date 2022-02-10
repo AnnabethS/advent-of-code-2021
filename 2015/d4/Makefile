@@ -2,4 +2,4 @@ one:
 	gcc one.c -lcrypto
 
 two:
-	gcc two.c
+	gcc two.c -lcrypto

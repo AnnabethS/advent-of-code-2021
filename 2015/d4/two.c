@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-char isFirst5Zero(unsigned char* str);
+char isFirst6Zero(unsigned char* str);
 void generateHash(unsigned char* str, int num, unsigned char* output);
 
 int main()
@@ -16,7 +16,7 @@ int main()
 		num++;
 		memset(&outputString[0], 0, sizeof(unsigned char)*64);
 		generateHash(test, num, &outputString[0]);
-		found = isFirst5Zero(outputString);
+		found = isFirst6Zero(outputString);
 		if(num == 609043)
 		{
 			printf("---\n");
@@ -53,9 +53,9 @@ void generateHash(unsigned char* str, int num, unsigned char* output)
 	return;
 }
 	
-char isFirst5Zero(unsigned char* str)
+char isFirst6Zero(unsigned char* str)
 {
-	for(int i=0; i < 5; i++)
+	for(int i=0; i < 6; i++)
 	{
 		if((str[i] - '0') != 0)
 		{
