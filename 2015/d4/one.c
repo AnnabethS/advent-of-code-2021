@@ -2,35 +2,63 @@
 #include <stdio.h>
 #include <string.h>
 
-char isFirst5Zero(char* str);
+char isFirst5Zero(unsigned char* str);
+void generateHash(unsigned char* str, int num, unsigned char* output);
 
 int main()
 {
-	unsigned char* test = "abcdef609043";
-	unsigned char* ptr = MD5(&test[0], 12, NULL);
-	printf("%c\n", ptr);
-	/* printf("%d\n", ptr[0]); */
-	/* int count = 1; */
-	/* unsigned char bufStr[50] = {0}; */
-	/* do */
-	/* { */
-	/* 	printf("\n"); */
-	/* 	strcpy(bufStr, ptr); */
-	/* 	char cat[20]; */
-	/* 	sprintf(cat, "%d", count); */
-	/* 	strcat(bufStr, cat); */
-	/* 	ptr = MD5(&bufStr[0], strlen(bufStr), NULL); */
-	/* } while (!isFirst5Zero(ptr)); */
-	/* printf("%d\n", count); */
+	unsigned char* test = "pqrstuv";
+	unsigned char outputString[64] = {0};
+	int num = 0;
+	char found = 0;
+	while(!found)
+	{
+		num++;
+		memset(&outputString[0], 0, sizeof(unsigned char)*64);
+		generateHash(test, num, &outputString[0]);
+		found = isFirst5Zero(outputString);
+		if(num == 1048970)
+		{
+			printf("---\n");
+			for(int i=0; i < 64; i++)
+			{
+				printf("%c", outputString[i]);
+			}
+			printf("\n");
+		}
+	}
+	printf("required_num: %d\n", num);
 }
 
-char isFirst5Zero(char* str)
+void generateHash(unsigned char* str, int num, unsigned char* output)
+{
+	char numString[10] = {0};
+	sprintf(numString, "%d", num);
+	unsigned char inputString[20] = {0};
+	strcpy((char*)inputString, (char*)str);
+	strcat((char*)inputString, numString);
+	unsigned char outputString[17] = {0};
+	MD5(&inputString[0], strlen((char*)inputString), &outputString[0]);
+	unsigned char hexString[33] = {0};
+	for(int i=0; i < 16; i++)
+	{
+		unsigned char value = outputString[i];
+		char hex[3] = {0};
+		sprintf(hex, "%02x", value);
+		strcat((char*) hexString, hex);
+	}
+	strcpy((char*)output, (char*)outputString);
+	return;
+}
+	
+char isFirst5Zero(unsigned char* str)
 {
 	for(int i=0; i < 5; i++)
 	{
-		printf("%d ", (str[i]));
-		if(str[i] != 0)
+		if((str[i] - '0') != 0)
+		{
 			return 0;
+		}
 	}
 	return 1;
 }
