@@ -25,11 +25,16 @@ The language i will be using is C, mainly because its an interesting challenge a
 
 *** Puzzle 4
 
-- MD5 hashing in C causes me great pain
+- why does the MD5 function from the crypto library store its strings as unsigned char*
+- part 2 was literally the same i just changed a 5 to a 6
 
 *** Puzzle 5
 
--
+- fun and easy string comp puzzle
+
+*** Puzzle 6
+
+- a nice puzzle, again with a dissapointing part 2, it was basically the same thing, but with a trivial change, similar to puzzle 4
 
 ** 2016
 ** 2017
@@ -154,7 +159,7 @@ actually not that many (i overscoped and did x: -1000 -> 1000 and y: 0 -> 1000)
 that i no longer wish to participate in AoC 2021 due to other commitments in my life
 becoming more important, and requiring my time.
 
-## Closing Thoughts
+*** Closing Thoughts
 
 - Doing it in C was a fun challenge, and i got a lot better at C during this year,
 - Was definitely a worthwhile experience, and exposed some flaws in my knowledge
