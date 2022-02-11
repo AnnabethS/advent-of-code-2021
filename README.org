@@ -22,7 +22,6 @@ The language i will be using is C, mainly because its an interesting challenge a
   with some sort of hash map rather than a linked list, although it
   may not be worth it, since its very fast anyway
 
-
 *** Puzzle 4
 
 - why does the MD5 function from the crypto library store its strings as unsigned char*
