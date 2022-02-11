@@ -73,6 +73,36 @@ int main()
 		}
 	}
 	printf("%u\n", signals[0][26]);
+	u16 oldA = signals[0][26];
+	for(int i=0; i < 26; i++)
+	{
+		for(int j=0; j < 27; j++)
+		{
+			signals[i][j] = 0;
+			defined[i][j] = 0;
+		}
+	}
+	signals[1][26] = oldA;
+	defined[1][26] = 1;
+	for(int i=0; i < 339; i++)
+	{
+		gates[i].eval = 0;
+	}
+	gates[3].eval = 1;
+	check = 1;
+	while(check)
+	{
+		check = 0;
+		for(int i=0; i < 339; i++)
+		{
+			if(!gates[i].eval)
+			{
+				check = 1;
+				evalGate(&gates[i]);
+			}
+		}
+	}
+	printf("2nd: %u\n", signals[0][26]);
 }
 
 /*
