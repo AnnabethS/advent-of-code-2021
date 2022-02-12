@@ -51,7 +51,18 @@ The language i will be using is C, mainly because its an interesting challenge a
   due to the low size of data, meaning a more complex solution would be overengineered
 - If I had to make a more efficient version, i would use branch & bound, pruning branches where
   they are already higher / lower (depending on the part) than our current best
-  
+
+*** Puzzle 10
+
+- My solution to this puzzle isnt very satisfactory, it takes way too long on part 2 especially,
+  but i couldnt come up with another way to solve it.
+
+*** Puzzle 11
+
+- Another easy puzzle, simple iterative solution. I had planned to implement some optimisation with
+  automatically removing i, o, and l from the password by setting them to their next letter and then
+  setting every letter after to a, but it ended up not being necessary
+
 ** 2016
 ** 2017
 ** 2018
