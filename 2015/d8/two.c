@@ -21,22 +21,12 @@ int main()
 
 int getStringDiff(char* str)
 {
-	int codeLength = strlen(str);
-	int actualLength = codeLength - 2; // this accounts for the 2 guaranteed " characters
-	char* nextSlash = strchr(str, '\\');
-	while(nextSlash != NULL)
+	int actualLength = strlen(str);
+	int codeLength = actualLength + 2; // this accounts for the 2 added "
+	for(int i=0; i < actualLength; i++)
 	{
-		if(*(nextSlash+1) == 'x')
-		{
-			actualLength -= 3;
-			nextSlash += 4;
-		}
-		else
-		{
-			actualLength -= 1;
-			nextSlash += 2;
-		}
-		nextSlash = strchr(nextSlash, '\\');
+		if(*(str+i) == '\\' || *(str+i) == '"')
+			codeLength++;
 	}
 	return codeLength - actualLength;
 }

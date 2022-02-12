@@ -41,6 +41,10 @@ The language i will be using is C, mainly because its an interesting challenge a
 - struggled with part 2, due to some ambiguity with the puzzle question
 - overall good though, although my code is definitely over-engineered
 
+*** Puzzle 8
+
+- Didnt give me too much trouble, both parts were very similar
+
 ** 2016
 ** 2017
 ** 2018
