@@ -35,6 +35,12 @@ The language i will be using is C, mainly because its an interesting challenge a
 
 - a nice puzzle, again with a dissapointing part 2, it was basically the same thing, but with a trivial change, similar to puzzle 4
 
+*** Puzzle 7
+
+- another really fun puzzle, best so far of this year, was fun essentially building a very rudimentary parser
+- struggled with part 2, due to some ambiguity with the puzzle question
+- overall good though, although my code is definitely over-engineered
+
 ** 2016
 ** 2017
 ** 2018
