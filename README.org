@@ -18,9 +18,7 @@ The language i will be using is C, mainly because its an interesting challenge a
 
 *** Puzzle 3
 
-- Nice easy puzzle again, my solution could probably be made faster
-  with some sort of hash map rather than a linked list, although it
-  may not be worth it, since its very fast anyway
+- Nice easy puzzle again, my solution could probably be made faster with some sort of hash map rather than a linked list, although it may not be worth it, since its very fast anyway
 
 *** Puzzle 4
 
@@ -47,21 +45,16 @@ The language i will be using is C, mainly because its an interesting challenge a
 
 *** Puzzle 9
 
-- A good puzzle, implementing a TSP solver, which i implemented via the brute force approach
-  due to the low size of data, meaning a more complex solution would be overengineered
-- If I had to make a more efficient version, i would use branch & bound, pruning branches where
-  they are already higher / lower (depending on the part) than our current best
+- A good puzzle, implementing a TSP solver, which i implemented via the brute force approach due to the low size of data, meaning a more complex solution would be overengineered
+- If I had to make a more efficient version, i would use branch & bound, pruning branches where they are already higher / lower (depending on the part) than our current best
 
 *** Puzzle 10
 
-- My solution to this puzzle isnt very satisfactory, it takes way too long on part 2 especially,
-  but i couldnt come up with another way to solve it.
+- My solution to this puzzle isnt very satisfactory, it takes way too long on part 2 especially, but i couldnt come up with another way to solve it.
 
 *** Puzzle 11
 
-- Another easy puzzle, simple iterative solution. I had planned to implement some optimisation with
-  automatically removing i, o, and l from the password by setting them to their next letter and then
-  setting every letter after to a, but it ended up not being necessary
+- Another easy puzzle, simple iterative solution. I had planned to implement some optimisation with automatically removing i, o, and l from the password by setting them to their next letter and then setting every letter after to a, but it ended up not being necessary
 
 ** 2016
 ** 2017
@@ -84,9 +77,7 @@ The language i will be using is C, mainly because its an interesting challenge a
 
 *** Puzzle 4
 
-- I had massive memory management issues again today, lots of strange
-behaviours, in the end the final bug was missing a blindingly obvious logical
-oversight
+- I had massive memory management issues again today, lots of strange behaviours, in the end the final bug was missing a blindingly obvious logical oversight
 
 *** Puzzle 5
 
@@ -96,19 +87,16 @@ oversight
 *** Puzzle 6
 
 - Used a nice linked list implementation for part 1,
-- linked list iteration did not scale well to part 2, so i implemented a
-smarter strategy for part 2
+- linked list iteration did not scale well to part 2, so i implemented a smarter strategy for part 2
 
 *** Puzzle 7
 
-- Got a little stuck with the 2nd part today, but was right about mean
-being correct, turns out to +/- 0.5, so i needed to check and input both
+- Got a little stuck with the 2nd part today, but was right about mean being correct, turns out to +/- 0.5, so i needed to check and input both
 
 *** Puzzle 8
 
 - part 1 was very easy
-- part 2 took me ages, working out the logic and then i had quite a few bugs
-suprisingly though, none were memory management related
+- part 2 took me ages, working out the logic and then i had quite a few bugs suprisingly though, none were memory management related
 - this is the first day that im not finishing on the day of its release
 
 *** Puzzle 9
@@ -119,44 +107,29 @@ suprisingly though, none were memory management related
 
 *** Puzzle 10
 
-- fairly easy today, wrote a nice stack based implementation that worked for
-both parts, with only minor tweaks for part 2
-- spent a while on part 2 fixing an overflow, due to the values overflowing
-an int
+- fairly easy today, wrote a nice stack based implementation that worked for both parts, with only minor tweaks for part 2
+- spent a while on part 2 fixing an overflow, due to the values overflowing an int
 
 *** Puzzle 11
 
-- easiest day for a while, the diff between part 1 and 2 is like a few lines
-almost overengineered a solution with a queue of flashed octopi but the puzzle
-input is only 10*10 so its really unessecary.
+- easiest day for a while, the diff between part 1 and 2 is like a few lines almost overengineered a solution with a queue of flashed octopi but the puzzle input is only 10*10 so its really unessecary.
 
 *** Puzzle 12
 
 - medium difficulty today, took a while to get going
-- used a linked list for the working and finished paths, and then inside them a
-fixed length string which i just made large enough to always hold the maximum
-path length
-- had issues with time to completion on the second one, forgot i put the while
-loop in that traverses the entire linked list for debugging purposes. i had
-removed the printf
-but left the loop in, and after that it completed in about 2s
+- used a linked list for the working and finished paths, and then inside them a fixed length string which i just made large enough to always hold the maximum path length
+- had issues with time to completion on the second one, forgot i put the while loop in that traverses the entire linked list for debugging purposes. i had removed the printf but left the loop in, and after that it completed in about 2s
 
 *** Puzzle 13
 
-- Fairly easy day today, part 1 was harder than part 2, but was a fairly nice
-solution
-- due to the way i solved it, the hardest part of part 2 was reading the letters
-from the output to my terminal
+- Fairly easy day today, part 1 was harder than part 2, but was a fairly nice solution
+- due to the way i solved it, the hardest part of part 2 was reading the letters from the output to my terminal
 
 *** Puzzle 14
 
-- Another challenge of scaling today, first solution was quite easy, made a doubling
-dynamic length string where when it reaches the end it reallocs 2x the memory for that
-- This solution would not have worked for part 2 due to the time and space complexity
-so instead i used a system in which i keep track of all current pairs and how many times
-each letter has occured.
-- we keep track of occuring letters seperately since its easier than figuring it out
-by looking at the head of each pair or something like that.
+- Another challenge of scaling today, first solution was quite easy, made a doubling dynamic length string where when it reaches the end it reallocs 2x the memory for that
+- This solution would not have worked for part 2 due to the time and space complexity so instead i used a system in which i keep track of all current pairs and how many times each letter has occured.
+- we keep track of occuring letters seperately since its easier than figuring it out by looking at the head of each pair or something like that.
 
 *** Puzzle 15
 
@@ -168,10 +141,7 @@ by looking at the head of each pair or something like that.
 
 *** Puzzle 17
 
-- Fairly easy day today, one i stopped overengineering and looking for a smart
-solution that would allow me to automatically stop searching when i know an x
-value wont have any more working y values, to just search all of them since its
-actually not that many (i overscoped and did x: -1000 -> 1000 and y: 0 -> 1000)
+- Fairly easy day today, one i stopped overengineering and looking for a smart solution that would allow me to automatically stop searching when i know an x value wont have any more working y values, to just search all of them since its actually not that many (i overscoped and did x: -1000 -> 1000 and y: 0 -> 1000)
 
 - For part 2, i just removed some lines and added a counter.
 
@@ -182,12 +152,9 @@ actually not that many (i overscoped and did x: -1000 -> 1000 and y: 0 -> 1000)
 
 *** Puzzle 19
 
-- The End. I did not attempt this day due to travelling home, and i have decided
-that i no longer wish to participate in AoC 2021 due to other commitments in my life
-becoming more important, and requiring my time.
+- The End. I did not attempt this day due to travelling home, and i have decided that i no longer wish to participate in AoC 2021 due to other commitments in my life becoming more important, and requiring my time.
 
 *** Closing Thoughts
 
 - Doing it in C was a fun challenge, and i got a lot better at C during this year,
-- Was definitely a worthwhile experience, and exposed some flaws in my knowledge
-(i am looking at you, min heaps from day 15).
+- Was definitely a worthwhile experience, and exposed some flaws in my knowledge (i am looking at you, min heaps from day 15).
