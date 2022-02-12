@@ -45,6 +45,13 @@ The language i will be using is C, mainly because its an interesting challenge a
 
 - Didnt give me too much trouble, both parts were very similar
 
+*** Puzzle 9
+
+- A good puzzle, implementing a TSP solver, which i implemented via the brute force approach
+  due to the low size of data, meaning a more complex solution would be overengineered
+- If I had to make a more efficient version, i would use branch & bound, pruning branches where
+  they are already higher / lower (depending on the part) than our current best
+  
 ** 2016
 ** 2017
 ** 2018
