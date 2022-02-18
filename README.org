@@ -56,6 +56,8 @@ The language i will be using is C, mainly because its an interesting challenge a
 
 - Another easy puzzle, simple iterative solution. I had planned to implement some optimisation with automatically removing i, o, and l from the password by setting them to their next letter and then setting every letter after to a, but it ended up not being necessary
 
+*** Puzzle 12
+*** Puzzle 13
 ** 2016
 ** 2017
 ** 2018
