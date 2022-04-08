@@ -4,7 +4,7 @@
 #include <limits.h>
 
 #define BUFLEN 100
-#define PEOPLE 8
+#define PEOPLE 9
 
 FILE* fp;
 int value[PEOPLE][PEOPLE] = {0};
@@ -70,8 +70,8 @@ int main()
 int getSeatingValue(char picked[PEOPLE])
 {
 	int total = 0;
-	total += value[picked[7]][picked[0]];
-	total += value[picked[0]][picked[7]];
+	total += value[picked[PEOPLE-1]][picked[0]];
+	total += value[picked[0]][picked[PEOPLE-1]];
 	/* printf("%d + %d + ", value[picked[7]][picked[0]], value[picked[0]][picked[7]]); */
 	for(int i=0; i < PEOPLE-1; i++)
 	{
@@ -102,7 +102,7 @@ char nextPermutation(char picked[PEOPLE])
 	for(int i=0; i < PEOPLE; i++)
 	{
 		picked[i]++;
-		if(picked[i] < 8)
+		if(picked[i] < PEOPLE)
 			return 1;
 		if(i == PEOPLE-1)
 			return 0;
