@@ -42,7 +42,7 @@ int main()
 			aunts[i].valid = 0;
 			continue;
 		}
-		if(!(aunts[i].cats == goalAunt.cats) && !(aunts[i].cats == -1))
+		if(!(aunts[i].cats > goalAunt.cats) && !(aunts[i].cats == -1))
 		{
 			aunts[i].valid = 0;
 			continue;
@@ -52,7 +52,7 @@ int main()
 			aunts[i].valid = 0;
 			continue;
 		}
-		if(!(aunts[i].pDogs == goalAunt.pDogs) && !(aunts[i].pDogs == -1))
+		if(!(aunts[i].pDogs < goalAunt.pDogs) && !(aunts[i].pDogs == -1))
 		{
 			aunts[i].valid = 0;
 			continue;
@@ -67,12 +67,12 @@ int main()
 			aunts[i].valid = 0;
 			continue;
 		}
-		if(!(aunts[i].goldfish == goalAunt.goldfish) && !(aunts[i].goldfish == -1))
+		if(!(aunts[i].goldfish < goalAunt.goldfish) && !(aunts[i].goldfish == -1))
 		{
 			aunts[i].valid = 0;
 			continue;
 		}
-		if(!(aunts[i].trees == goalAunt.trees) && !(aunts[i].trees == -1))
+		if(!(aunts[i].trees > goalAunt.trees) && !(aunts[i].trees == -1))
 		{
 			aunts[i].valid = 0;
 			continue;
