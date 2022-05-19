@@ -2,8 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifndef TEST
+#define DEERAMOUNT 9
+#else
 #define DEERAMOUNT 2
-
+#endif
 
 typedef struct deer{
 	int flySpeed; //speed that the reindeer can fly at
@@ -38,62 +41,54 @@ int main()
 		deers[i].distance = 0;
 	}
 
-	/* deers[0].flySpeed = 14; */
-	/* deers[0].flyTime = 10; */
-	/* deers[0].restTime = 127; */
+	#ifdef TEST
+	deers[0].flySpeed = 14;
+	deers[0].flyTime = 10;
+	deers[0].restTime = 127;
+	deers[1].flySpeed = 16;
+	deers[1].flyTime = 11;
+	deers[1].restTime = 162;
+	#endif
 
-	/* deers[1].flySpeed = 16; */
-	/* deers[1].flyTime = 11; */
-	/* deers[1].restTime = 162; */
-
-	/* deer test; */
-	/* test.currentTime = 0; */
-	/* test.isResting = 0; */
-	/* test.restTime = 127; */
-	/* test.flyTime = 10; */
-	/* test.flySpeed = 14; */
-	/* test.distance = 0; */
-	/* for(int i=0; i < 1000; i++) */
-	/* { */
-	/* 	updateDeer(&test); */
-	/* 	printf("%d -> %d\n", i+1, test.distance); */
-	/* } */
-
-	int points[DEERAMOUNT] = {0};
+	uint points[DEERAMOUNT] = {0};
 	char win[DEERAMOUNT] = {0};
+	#ifdef TEST
+	#define STEPS 1000
+	#else
+	#define STEPS 2503
+	#endif
 
-	for(int i=0; i <= 2503; i++)
+	for(int i=0; i <= STEPS; i++)
 	{
 		memset(win, 0, sizeof(char)*DEERAMOUNT);
-		for(int j=0; j < DEERAMOUNT; j++)
-			updateDeer(&deers[j]);
-		int best = 0;
+		deer* furthestDeer = &deers[0];
+		win[0] = 1;
 		for(int j=0; j < DEERAMOUNT; j++)
 		{
-			if(deers[j].distance > best)
+			updateDeer(&deers[j]);
+			if(deers[j].distance > furthestDeer->distance)
 			{
-				best = deers[j].distance;
 				memset(win, 0, sizeof(char)*DEERAMOUNT);
 				win[j] = 1;
+				furthestDeer = &deers[j];
 			}
-			else if(deers[j].distance == best)
+			else if(deers[j].distance == furthestDeer->distance)
 			{
 				win[j] = 1;
 			}
-			
 		}
-		/* printf("%d -> %d\n", i, bestPos); */
-		for(int i=0; i < DEERAMOUNT; i++)
-			if(win[i])
-				points[i]++;
+		for(int j=0; j < DEERAMOUNT; j++)
+		{
+			points[j] += win[j];
+		}
 	}
-	int best = 0;
+	int maxPoints = 0;
 	for(int i=0; i < DEERAMOUNT; i++)
 	{
-		if(points[i] > best)
-			best = points[i];
+		if (points[i] > maxPoints)
+			maxPoints = points[i];
 	}
-	printf("highest_points: %d\n", best);
+	printf("points: %d\n", maxPoints);
 }
 
 void updateDeer(deer* d)
