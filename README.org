@@ -57,7 +57,34 @@ The language i will be using is C, mainly because its an interesting challenge a
 - Another easy puzzle, simple iterative solution. I had planned to implement some optimisation with automatically removing i, o, and l from the password by setting them to their next letter and then setting every letter after to a, but it ended up not being necessary
 
 *** Puzzle 12
+
+- JSON hell, i dislike parsing this stuff with C, and im putting it off for a while
+
 *** Puzzle 13
+
+- Seating puzzle, easily bruteforced
+
+*** Puzzle 14
+
+- This puzzle was slightly odd, in that i found it hard to understand the problem effectively
+- I also did not read properly the problem in terms of draws
+
+*** Puzzle 15
+
+- Cookie puzzle, this one was fairly easy
+
+*** Puzzle 16
+
+- Another day that took way longer than it should have due to me not reading the problem correctly
+
+*** Puzzle 17
+
+- Coin Counting problem, likely requires dynamic programming + i cant be bothered rn
+
+*** Puzzle 18
+
+- Conway's game of life but slightly simpler, very easy day, took ~15 mins
+  
 ** 2016
 ** 2017
 ** 2018
