@@ -59,6 +59,7 @@ The language i will be using is C, mainly because its an interesting challenge a
 *** Puzzle 12
 
 - JSON hell, i dislike parsing this stuff with C, and im putting it off for a while
+- I have now completed this challenge by *barely* parsing the JSON, and traversing the list twice, backtracking using a stack whenever i find `:"red"` to find if its an object, and then adding that to an exclusion list, which is the same length as the string buffer the input is copied to. The final step is to then traverse the array, adding numbers if they are not in the exclusion zone.
 
 *** Puzzle 13
 
