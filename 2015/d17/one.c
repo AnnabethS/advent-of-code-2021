@@ -8,11 +8,11 @@ int main()
 	return 0;
 }
 
-int getCombos(char remainingMap[20], int currentTotal)
+int get_combos(char remaining_map[20], int curr_total)
 {
-	if(currentTotal > 150)
+	if(curr_total > 150)
 		return 0;
-	else if (currentTotal == 150)
+	else if (curr_total == 150)
 		return 1;
 	
 }
