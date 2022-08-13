@@ -65,7 +65,7 @@ findFirstRepeated = go []
 
 
 getTilesBetween :: ((Int, Int), (Int, Int)) -> [(Int, Int)]
-getTilesBetween ((x1,y1), (x2,y2)) | x1==x2 = [(x1, y) | y <- f y1 y2] 
+getTilesBetween ((x1,y1), (x2,y2)) | x1==x2 = [(x1, y) | y <- f y1 y2]
                                    | y1==y2 = [(x, y1) | x <- f x1 x2]
                                    | otherwise = error "unreachable"
   where f from to | from <= to = [from..to]
