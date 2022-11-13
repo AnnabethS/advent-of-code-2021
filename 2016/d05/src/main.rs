@@ -42,7 +42,7 @@ fn part_1(input: &String) -> String {
 
 fn part_2(input: &String) -> String {
     let mut iter = 0;
-    let mut o = ['\0'; 8];
+    let mut o:[char; 8] = ['_'; 8];
     let mut found = 0;
     while found < 8{
         let hstr = next_hash(&input, &mut iter);
@@ -50,15 +50,15 @@ fn part_2(input: &String) -> String {
         println!("found working hash with iter: {}", iter);
         let pos_char = hstr.chars().nth(5).unwrap();
         if "01234567".contains(pos_char) {
-            println!("valid pos char: {}", pos_char);
-            if o[pos_char.to_digit(10).unwrap() as usize] != '\0' {
-                println!("found empty pos, inserting new.")
-
+            if o[pos_char.to_digit(10).unwrap() as usize] == '_' {
+                found += 1;
+                o[pos_char.to_digit(10).unwrap() as usize] = hstr.chars().nth(6).unwrap();
+                println!("new code: {}", o.to_vec().into_iter().collect::<String>())
             }
         }
     }
 
-    todo!()
+    o.to_vec().into_iter().collect()
 }
 
 
@@ -69,6 +69,6 @@ fn main() {
     let p1 = part_1(&input);
     println!("part 1: {}", p1);
 
-    // let p2:String = part_2(input);
-    // println!("part 2: {}", p2);
+    let p2:String = part_2(&input);
+    println!("part 2: {}", p2);
 }
