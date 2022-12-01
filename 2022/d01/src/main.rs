@@ -12,7 +12,13 @@ fn main() {
             .collect::<Vec<u64>>())
         .collect();
 
-    let mut elf_totals:Vec<_> = elves.clone().iter().map(|elf| elf.iter().fold(0, |a, b| a + b)).collect();
+    let mut elf_totals:Vec<_> = elves
+        .clone()
+        .iter()
+        .map(|elf| elf
+            .iter()
+            .sum())
+        .collect();
 
     let mut max_cal = 0;
     for e in elf_totals.iter() {
