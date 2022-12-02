@@ -2,13 +2,37 @@
 
 import subprocess
 import time
+from enum import Enum
+import matplotlib.pyplot as plt
+import numpy as np
 
 
-def process_day(path: str):
+class Lang(Enum):
+    RUST = 0
+    C = 1
+    HASKELL = 2
+
+
+class DataPoint:
+    def __init__(self, lang, day, time):
+        self.lang = lang
+        self.day = day
+        self.time = time
+
+    def __str__(self) -> str:
+        return (f"{self.day} completed with {self.lang} in "
+                f"{self.time:.3f} seconds")
+
+    def __repr__(self):
+        return self.__str__()
+
+
+def process_day(path: str) -> DataPoint:
     files = subprocess.run(f"ls {path}",
                            shell=True, capture_output=True).stdout.decode()
     if files.find("Cargo.toml") != -1:
-        process_day_rust(path)
+        time = process_day_rust(path)
+        return DataPoint(Lang.RUST, path, time)
 
 
 def process_day_haskell(path: str):
@@ -44,5 +68,26 @@ for y in years:
         days.append(daypath)
 
 
+data = []
+
 for day in days:
-    process_day(day)
+    if day == "2016/d05":
+        continue
+    data_point = process_day(day)
+    if data_point is not None:
+        data.append(data_point)
+
+print(data)
+
+days_strs = []
+days_times = []
+
+for i in data:
+    days_strs.append(i.day)
+    days_times.append(i.time)
+
+x = np.array(days_strs)
+y = np.array(days_times)
+
+plt.plot(x,y)
+plt.show()
