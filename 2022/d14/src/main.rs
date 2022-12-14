@@ -65,6 +65,43 @@ fn parse_line(s: &str) -> Vec<(Point, Point)> {
 }
 
 // true if sand falls into abyss
+fn drop_sand_2(grid: &mut HashMap<Point, Tile>, floor: usize) -> bool {
+    let mut sand = Point { x: 500, y: 0 };
+    let mut new_pos = tick_sand_2(&grid, sand, floor);
+
+    while new_pos.is_some() {
+        sand = new_pos.unwrap();
+        new_pos = tick_sand_2(&grid, sand, floor);
+    }
+
+    grid.insert(sand, Tile::SND);
+
+    return false
+}
+
+fn tick_sand_2(grid: &HashMap<Point, Tile>, pos: Point, floor: usize) -> Option<Point> {
+    if pos.y+1 == floor {
+        return None
+    }
+    match grid.get(&Point { x: pos.x, y: pos.y+1 }).unwrap_or(&Tile::AIR) {
+        Tile::AIR => return Some(Point {x: pos.x, y: pos.y+1}),
+        _ => (),
+    }
+
+    if pos.x > 0 {
+        match grid.get(&Point { x: pos.x-1, y: pos.y+1 }).unwrap_or(&Tile::AIR) {
+            Tile::AIR => return Some(Point {x: pos.x-1, y: pos.y+1}),
+            _ => (),
+        }
+    }
+
+    match grid.get(&Point { x: pos.x+1, y: pos.y+1 }).unwrap_or(&Tile::AIR) {
+        Tile::AIR => return Some(Point {x: pos.x+1, y: pos.y+1}),
+        _ => return None,
+    }
+
+}
+// true if sand falls into abyss
 fn drop_sand(grid: &mut HashMap<Point, Tile>) -> bool {
     let mut sand = Point { x: 500, y: 0 };
     let mut new_pos = tick_sand(&grid, sand);
@@ -135,6 +172,8 @@ fn main() {
         }
     }
 
+    let floor = grid.keys().max_by(|x, y| x.y.cmp(&y.y)).unwrap().y + 2;
+
     print_grid(&grid);
 
     let mut part_1 = 0;
@@ -146,4 +185,13 @@ fn main() {
     print_grid(&grid);
 
     println!("part 1: {}", part_1);
+    let mut part_2 = part_1;
+
+    while grid.get(&Point { x: 500, y: 0 }).unwrap_or(&Tile::AIR) != &Tile::SND {
+        part_2 += 1;
+        drop_sand_2(&mut grid, floor);
+    }
+
+    print_grid(&grid);
+    println!("part 2: {}", part_2);
 }
