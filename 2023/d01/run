@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cargo build --release -q --bin p1
+
+echo "part 1"
+time cargo run --release -q --bin p1
+
+echo ""
+cargo build --release -q --bin p2 > /dev/null
+
+echo "part 2"
+time cargo run -q --release --bin p2
