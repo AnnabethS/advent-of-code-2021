@@ -58,18 +58,13 @@ fn part_2(input: &str) -> u32 {
 fn main() {
     // let input = include_str!("example.txt");
     let input = include_str!("input.txt");
-    let repeats = 50;
     println!("part 1: {}", part_1(input));
     let start = std::time::Instant::now();
-    for _i in 0..repeats {
-        part_1(input);
-    }
-    println!("Done in {:?}", start.elapsed() / repeats);
+    part_1(input);
+    println!("Done in {:?}", start.elapsed());
 
     println!("part 2: {}", part_2(input));
     let start = std::time::Instant::now();
-    for _i in 0..(repeats-1) {
         part_2(input);
-    }
-    println!("Done in {:?}", start.elapsed() / repeats);
+    println!("Done in {:?}", start.elapsed());
 }
