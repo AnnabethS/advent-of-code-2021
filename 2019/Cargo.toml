@@ -1,0 +1,17 @@
+[package]
+name = "year-2019"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "d01"
+path = "src/bin/d01.rs"
+
+[[bin]]
+name = "d02"
+path = "src/bin/d02.rs"
