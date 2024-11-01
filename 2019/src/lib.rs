@@ -1,6 +1,43 @@
+mod intcodevm_builder;
+pub mod grid;
+
 use intcodevm_builder::IntCodeVMBuilder;
 
-mod intcodevm_builder;
+#[derive(Debug, PartialEq, Eq)]
+enum ParameterMode {
+    Position,
+    Immediate
+}
+
+impl From<char> for ParameterMode {
+    fn from(value: char) -> Self {
+        match value {
+            '0' => Self::Position,
+            '1' => Self::Immediate,
+            _ => unimplemented!()
+        }
+    }
+}
+
+#[derive(Debug, PartialEq, Eq)]
+struct Instruction {
+    arg_modes: Vec<ParameterMode>,
+    instruction: i64,
+}
+
+impl From<&str> for Instruction {
+    fn from(value: &str) -> Self {
+        let padded_instruction: Vec<char> = format!("{:05}", value.parse::<i64>().expect(&format!("failed parsing instruction: {}", value))).chars().collect();
+        let arg_modes = padded_instruction[0..=2].iter().map(|c| (*c).into()).collect();
+
+        let instruction = padded_instruction[3..].iter().collect::<String>().parse::<i64>().unwrap();
+
+        return Instruction {
+            arg_modes,
+            instruction,
+        };
+    }
+}
 
 pub struct IntCodeVM {
     memory: Vec<i64>,
@@ -140,6 +177,19 @@ mod tests {
             vec![2, 5, 6, 7, 99, 5, 10, 0],
             vec![2, 5, 6, 7, 99, 5, 10, 50],
         )
+    }
+
+    #[test]
+    fn test_instruction_parser() {
+        let cases = vec![
+            ("1002", Instruction { arg_modes: vec![ParameterMode::Position, ParameterMode::Immediate, ParameterMode::Position], instruction: 2 }),
+            ("1", Instruction { arg_modes: vec![ParameterMode::Position, ParameterMode::Position, ParameterMode::Position], instruction: 1 })
+        ];
+
+        for (input, expected) in cases {
+            let result: Instruction = input.into();
+            assert_eq!(expected, result);
+        }
     }
 
 }
