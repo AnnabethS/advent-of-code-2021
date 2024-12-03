@@ -6,4 +6,11 @@ edition = "2021"
 [[bin]]
 name = "d01"
 
+[[bin]]
+name = "d02"
+
+[[bin]]
+name = "d03"
+
 [dependencies]
+regex = "1.11.1"
